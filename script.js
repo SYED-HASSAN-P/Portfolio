@@ -1,41 +1,50 @@
 // Initialize AOS animations
 AOS.init({
-  duration: 1200,
-  once: true,
-  easing: 'ease-in-out'
+    duration: 1200,            // Animation duration (ms)
+    once: true,                // Only animate once per element
+    easing: 'ease-in-out'      // Smooth easing
 });
 
-// Navbar background change on scroll
+// Add background to navbar on scroll
 window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 });
 
-// Smooth scroll for nav links
+// Smooth scrolling for internal nav links
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
+        const targetId = this.getAttribute('href');
+        if (targetId.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     });
 });
 
-// Highlight active link on scroll
+// Highlight active section link in navbar on scroll
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
-    let current = '';
+    let currentSectionId = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 120;
         if (pageYOffset >= sectionTop) {
-            current = section.getAttribute('id');
+            currentSectionId = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
+        if (link.getAttribute('href').includes(currentSectionId)) {
             link.classList.add('active');
         }
     });

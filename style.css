@@ -1,8 +1,12 @@
+/* General body styling */
 body {
     font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
 
-
+/* Header with animated gradient background */
 .header {
     height: 100vh;
     width: 100%;
@@ -11,8 +15,32 @@ body {
     animation: gradientBG 8s ease infinite;
     position: relative;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
+/* Animated gradient text for hero name */
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(270deg, #ffd700, #8f94fb, #4e54c8);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 8s ease infinite;
+}
+
+@keyframes gradientText {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* Navbar active link styling */
 .nav-link.active {
     color: #ffd700 !important;
     position: relative;
@@ -34,31 +62,76 @@ body {
     to { width: 100%; }
 }
 
-
-
+/* Navbar base style */
 .overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.4);
 }
 nav a {
-    color: #fff;
+    color: #fff !important;
     margin: 0 10px;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s;
 }
 nav a:hover {
-    color: #ffd700;
+    color: #ffd700 !important;
 }
+
+/* Gradient background animation */
 @keyframes gradientBG {
     0% {background-position: 0% 50%;}
     50% {background-position: 100% 50%;}
     100% {background-position: 0% 50%;}
 }
+
+/* Cards with hover effect */
+.card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 12px;
+    background: #fff;
+}
 .card:hover {
-    transform: translateY(-8px);
-    transition: 0.3s;
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
+/* Buttons hover effect */
+.btn {
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 25px;
+}
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
 
+/* Skills tags styling */
+.skills span {
+    display: inline-block;
+    background: #e4e4e4;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+.skills span:hover {
+    background: #4e54c8;
+    color: #fff;
+}
+
+/* Fade-in effect for sections */
+[data-aos] {
+    transition: all 0.8s ease-in-out;
+}
+
+/* Footer styling */
+footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
